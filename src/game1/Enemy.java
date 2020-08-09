@@ -1,8 +1,8 @@
 package game1;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Enemy extends GameObject {
@@ -12,9 +12,12 @@ public class Enemy extends GameObject {
 	int choose = 0;
 	int hp = 100;
 
-	public Enemy(int x, int y, ID id, Handler handler) {
-		super(x, y, id);
+	private BufferedImage enemy_image;
+	
+	public Enemy(int x, int y, ID id, Handler handler, SpriteSheet ss) {
+		super(x, y, id, ss);
 		this.handler = handler;
+		enemy_image = ss.grabImage(4, 1, 32, 32);
 	}
 
 	@Override
@@ -58,8 +61,7 @@ public class Enemy extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.yellow);
-		g.fillRect(x,  y,  32, 32);
+		g.drawImage(enemy_image, x, y, null);
 	}
 
 	@Override

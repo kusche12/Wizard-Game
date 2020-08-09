@@ -4,13 +4,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Block extends GameObject{
+public class Crate extends GameObject {
 	
-	private BufferedImage block_image;
+	private BufferedImage crate_image;
 
-	public Block(int x, int y, ID id, SpriteSheet ss) {
+	public Crate(int x, int y, ID id, SpriteSheet ss) {
 		super(x, y, id, ss);
-		block_image = ss.grabImage(5, 2, 32, 32);
+		crate_image = ss.grabImage(6, 2, 32, 32);
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class Block extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(block_image, x, y, null);
+		g.drawImage(crate_image, x, y, null);
 	}
 
 	@Override
