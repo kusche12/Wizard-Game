@@ -18,6 +18,8 @@ public class Wizard extends GameObject {
 		x += velX;
 		y += velY;
 		
+		collision();
+		
 		// Movement
 		if (handler.isUp()) velY = -5;
 		else if (!handler.isDown()) velY = 0;
@@ -30,6 +32,20 @@ public class Wizard extends GameObject {
 		
 		if (handler.isLeft()) velX = -5;
 		else if (!handler.isRight()) velX = 0;
+	}
+	
+	// If object is a block and it is intersecting the wizard, 
+	// then repel the wizard away
+	private void collision() {
+		for (int i = 0; i < handler.object.size(); i++) {			
+			GameObject temp = handler.object.get(i);
+			if (temp.getId() == ID.Block) {
+				if (getBounds().intersects(temp.getBounds())) {
+					x += velX * -1;
+					y += velY * -1;
+				}
+			}
+		}
 	}
 
 	@Override
